@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Pod 2 System | Premium Marketing Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+
+:root{
+--bg:#050505;--bg2:#0c0c0c;--bg3:#141414;--bg4:#1c1c1c;--bg5:#252525;--border:#1e1e1e;--border2:#2a2a2a;
+--g:#00FF87;--g2:#00E676;--g3:#00C853;--gdim:rgba(0,255,135,.06);--glow:rgba(0,255,135,.15);
+--w:#fff;--t1:#f0f0f0;--t2:#aaa;--t3:#777;--t4:#555;--t5:#333;
+--red:#ff4757;--yellow:#ffc107;--blue:#448aff;--purple:#b388ff;
+--r:14px;--rs:10px;--rl:20px;
+--font:'Outfit',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font);background:var(--bg);color:var(--t1);min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--t5);border-radius:3px}
+
+/* === TABS NAV === */
+.tab-nav{position:fixed;top:0;left:0;right:0;height:56px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;z-index:100;padding:0 24px;gap:0;backdrop-filter:blur(20px)}
+.tab-logo{display:flex;align-items:center;gap:10px;margin-right:32px;flex-shrink:0}
+.tab-logo .icon{width:34px;height:34px;background:var(--g);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:var(--bg)}
+.tab-logo span{font-weight:800;font-size:15px;color:var(--w);letter-spacing:.5px}
+.tab-logo small{font-size:10px;color:var(--t3);display:block;letter-spacing:1px;text-transform:uppercase}
+.tabs-wrap{display:flex;gap:2px;flex:1;overflow-x:auto}
+
+
+
+
+
+
+/* === MAIN === */
+.main{margin-top:56px;padding:32px;max-width:1400px;margin-left:auto;margin-right:auto}
+.page{display:none}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* === CARDS === */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:24px;transition:border .3s}
+.card:hover{border-color:var(--border2)}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.card-title{font-size:15px;font-weight:700;color:var(--w)}
+.card-title i{color:var(--g);margin-right:8px;font-size:13px}
+
+/* === STATS === */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+.stat{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;position:relative;overflow:hidden}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.stat.c1::before{background:var(--g)}.stat.c2::before{background:var(--blue)}.stat.c3::before{background:var(--yellow)}.stat.c4::before{background:var(--purple)}
+.stat-label{font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:600}
+.stat-val{font-size:32px;font-weight:800;color:var(--w)}
+.stat-sub{font-size:11px;color:var(--t3);margin-top:4px}
+
+/* === GRID === */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.g6{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+
+/* === TABLE === */
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:1px;padding:12px 16px;text-align:left;border-bottom:1px solid var(--border)}
+td{padding:12px 16px;font-size:13px;border-bottom:1px solid var(--border);color:var(--t1)}
+tr:hover td{background:var(--gdim)}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.3px}
+.badge.green{background:rgba(0,255,135,.1);color:var(--g)}
+.badge.orange{background:rgba(255,152,0,.12);color:#FFA726}
+.badge.uploaded{background:rgba(179,136,255,.1);color:var(--purple)}
+.badge.waiting{background:rgba(255,152,0,.12);color:#FFA726}
+.badge.approved{background:rgba(0,255,135,.1);color:var(--g)}
+.badge.yellow{background:rgba(255,193,7,.1);color:var(--yellow)}
+.badge.red{background:rgba(255,71,87,.1);color:var(--red)}
+.badge.blue{background:rgba(68,138,255,.1);color:var(--blue)}
+.badge.purple{background:rgba(179,136,255,.1);color:var(--purple)}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
+.dot.must{background:var(--red)}.dot.should{background:var(--yellow)}.dot.nice{background:var(--blue)}
+
+/* === BUTTONS === */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:var(--rs);font-family:var(--font);font-size:12px;font-weight:700;cursor:pointer;border:none;transition:all .2s;letter-spacing:.3px}
+.btn-g{background:var(--g);color:var(--bg)}.btn-g:hover{background:var(--g2)}
+.btn-o{background:var(--bg3);color:var(--t2);border:1px solid var(--border)}.btn-o:hover{border-color:var(--g);color:var(--g)}
+.btn-sm{padding:5px 12px;font-size:11px}
+
+/* === PROGRESS === */
+.prog{height:6px;background:var(--bg5);border-radius:3px;overflow:hidden}
+.prog .fill{height:100%;border-radius:3px;transition:width .6s ease}
+.prog .fill.green{background:var(--g)}.prog .fill.yellow{background:var(--yellow)}.prog .fill.blue{background:var(--blue)}
+
+/* === HERO (HOME) === */
+.hero{padding:56px 48px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);margin-bottom:32px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-150px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(0,255,135,.04) 0%,transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
+.hero-tag{display:inline-block;padding:5px 14px;background:var(--gdim);border:1px solid rgba(0,255,135,.15);border-radius:20px;font-size:10px;color:var(--g);font-weight:700;margin-bottom:20px;letter-spacing:1.5px;text-transform:uppercase}
+.hero h1{font-size:40px;font-weight:900;color:var(--w);margin-bottom:14px;line-height:1.15;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;color:var(--g)}
+.hero>p{font-size:15px;color:var(--t2);max-width:640px;line-height:1.75;margin-bottom:32px}
+
+/* VALUES */
+.vals{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.val{background:var(--bg3);border:1px solid var(--border);border-radius:var(--rs);padding:24px;text-align:center;transition:all .3s;cursor:default}
+.val:hover{border-color:var(--g);transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,255,135,.06)}
+.val i{font-size:22px;color:var(--g);margin-bottom:12px;display:block}
+.val h4{font-size:13px;font-weight:700;color:var(--w);margin-bottom:6px}
+.val p{font-size:11px;color:var(--t3);line-height:1.5}
+
+/* FLOW */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.flow-step{background:var(--bg3);border:1px solid var(--border);border-radius:var(--rs);padding:20px 16px;text-align:center;position:relative}
+.flow-step::after{content:'\f054';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--t5);font-size:10px}
+.flow-step:last-child::after{display:none}
+.flow-num{font-family:var(--mono);font-size:10px;color:var(--g);font-weight:600;margin-bottom:8px;letter-spacing:1px}
+.flow-step h5{font-size:12px;color:var(--w);margin-bottom:4px;font-weight:700}
+.flow-step p{font-size:10px;color:var(--t3);line-height:1.4}
+
+/* TEAM CARDS */
+.team-card{text-align:center;padding:28px 20px}
+.team-av{width:52px;height:52px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;color:var(--bg)}
+.team-nm{font-weight:700;font-size:14px;color:var(--w);margin-bottom:2px}
+.team-rl{font-size:11px;color:var(--t3);margin-bottom:14px}
+.team-row{display:flex;justify-content:center;gap:20px}
+.team-s{text-align:center}
+.team-s b{display:block;font-size:16px;color:var(--w)}
+.team-s span{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px}
+
+/* BRIEF TRACKER */
+.brief-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--rs);padding:16px;margin-bottom:10px}
+.brief-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.brief-top b{font-size:13px;color:var(--w)}
+.brief-pct{font-family:var(--mono);font-size:12px;color:var(--g)}
+
+/* ACTIVITY */
+.act{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.act:last-child{border:none}
+.act-dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0}
+.act-dot.g{background:var(--g)}.act-dot.y{background:var(--yellow)}.act-dot.b{background:var(--blue)}.act-dot.r{background:var(--red)}
+.act-txt{font-size:12px;color:var(--t1);line-height:1.5}
+.act-time{font-size:10px;color:var(--t4);margin-top:2px}
+
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.overlay.show{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);width:92%;max-width:520px;max-height:85vh;overflow-y:auto;padding:32px}
+.modal h3{font-size:18px;font-weight:800;color:var(--w);margin-bottom:24px}
+.modal label{display:block;font-size:10px;color:var(--t3);margin-bottom:5px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.modal input,.modal select,.modal textarea{width:100%;padding:10px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--rs);color:var(--w);font-size:13px;font-family:var(--font);margin-bottom:14px;outline:none;transition:border .2s}
+.modal input:focus,.modal select:focus,.modal textarea:focus{border-color:var(--g)}
+.modal select{cursor:pointer}
+.modal textarea{resize:vertical;min-height:70px}
+.modal-btns{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
+
+/* WEEKLY FLOW */
+.week-section{margin-bottom:24px}
+.week-title{font-size:12px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.week-title i{font-size:11px}
+.task-list{display:flex;flex-direction:column;gap:8px}
+.task-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--rs);padding:14px 16px;display:flex;align-items:center;gap:12px;transition:all .2s;cursor:pointer}
+.task-item:hover{border-color:var(--border2);background:var(--bg4)}
+.task-check{width:18px;height:18px;border:2px solid var(--t4);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
+.task-check.checked{background:var(--g);border-color:var(--g);color:var(--bg);font-size:10px}
+.task-info{flex:1}
+.task-info b{font-size:12px;color:var(--w);display:block;margin-bottom:2px}
+.task-info span{font-size:10px;color:var(--t3)}
+.task-assign{font-size:10px;color:var(--t3);background:var(--bg5);padding:3px 8px;border-radius:10px}
+
+
+/* BOTTOM NAV */
+
+
+
+
+
+.more-sheet{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:flex-end;justify-content:center}
+.more-sheet.open{display:flex}
+.more-inner{width:100%;max-width:500px;background:var(--bg2);border-top:1px solid var(--border);border-radius:20px 20px 0 0;padding:20px 16px;padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+.more-title{font-size:12px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:12px;text-align:center}
+.more-item{display:flex;align-items:center;gap:14px;width:100%;padding:14px 16px;background:none;border:none;text-decoration:none;color:var(--t1);font-size:15px;font-family:var(--font);cursor:pointer;border-radius:12px;transition:background .2s}
+.more-item:active{background:var(--gdim)}
+.more-item i{width:20px;text-align:center;color:var(--g);font-size:16px}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+.stats{grid-template-columns:repeat(2,1fr)}
+.g2,.g3,.g4{grid-template-columns:1fr}
+.vals{grid-template-columns:1fr}
+.flow{grid-template-columns:repeat(2,1fr)}
+.flow-step::after{display:none}
+.tab-nav{height:56px;padding:0 16px;flex-wrap:nowrap}
+.tab-logo{margin-right:auto}
+.tab-logo small{display:none}
+.tabs-wrap{display:none !important;position:fixed;top:56px;left:0;right:0;bottom:0;background:rgba(5,5,5,.97);backdrop-filter:blur(20px);flex-direction:column;padding:24px 20px;gap:6px;z-index:99;overflow-y:auto}
+
+
+
+
+
+
+.main{padding:16px}
+.hero{padding:24px 18px}
+.hero h1{font-size:24px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{min-width:600px}
+.modal{width:95%;padding:20px;max-height:90vh}
+.bottom-nav{display:flex !important}
+.main{padding:16px;padding-bottom:90px}
+}
+@media(max-width:640px){
+.stats{grid-template-columns:1fr}
+.flow{grid-template-columns:1fr}
+.hero h1{font-size:22px}
+}
+
+/* PURE CSS NAV - RADIO BUTTONS */
+input[name="nav"]{display:none}
+#r-home:checked ~ .main #home{display:block}
+#r-dashboard:checked ~ .main #dashboard{display:block}
+#r-clients:checked ~ .main #clients{display:block}
+#r-tasks:checked ~ .main #tasks{display:block}
+#r-briefs:checked ~ .main #briefs{display:block}
+#r-onboarding:checked ~ .main #onboarding{display:block}
+#r-reports:checked ~ .main #reports{display:block}
+#r-team:checked ~ .main #team{display:block}
+#r-references:checked ~ .main #references{display:block}
+
+/* Bottom nav active states */
+#r-home:checked ~ .bottom-nav label[for="r-home"],
+#r-dashboard:checked ~ .bottom-nav label[for="r-dashboard"],
+#r-clients:checked ~ .bottom-nav label[for="r-clients"],
+#r-tasks:checked ~ .bottom-nav label[for="r-tasks"],
+#r-more:checked ~ .bottom-nav label[for="r-more"]{color:var(--g);background:var(--gdim)}
+
+/* More panel */
+#r-more:checked ~ .more-panel{display:block}
+.more-panel{display:none;position:fixed;bottom:72px;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);z-index:99;padding:12px 16px;padding-bottom:env(safe-area-inset-bottom)}
+.more-panel label{display:flex;align-items:center;gap:14px;padding:14px 16px;color:var(--t1);font-size:15px;border-radius:12px;cursor:pointer}
+.more-panel label:active{background:var(--gdim)}
+.more-panel label i{width:20px;text-align:center;color:var(--g);font-size:16px}
+/* When a sub-page is selected from More, hide more-panel and show the page */
+#r-briefs:checked ~ .more-panel,
+#r-onboarding:checked ~ .more-panel,
+#r-reports:checked ~ .more-panel,
+#r-team:checked ~ .more-panel,
+#r-references:checked ~ .more-panel{display:none}
+/* Also highlight More btn when sub-pages active */
+#r-briefs:checked ~ .bottom-nav label[for="r-more"],
+#r-onboarding:checked ~ .bottom-nav label[for="r-more"],
+#r-reports:checked ~ .bottom-nav label[for="r-more"],
+#r-team:checked ~ .bottom-nav label[for="r-more"],
+#r-references:checked ~ .bottom-nav label[for="r-more"]{color:var(--g);background:var(--gdim)}
+
+/* Top nav tabs - also pure CSS */
+.tabs-wrap label{padding:18px 22px;font-size:13px;font-weight:600;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;letter-spacing:.3px;display:inline-flex;align-items:center;gap:8px}
+.tabs-wrap label:hover{color:var(--t2)}
+#r-home:checked ~ .tab-nav .tabs-wrap label[for="r-home"],
+#r-dashboard:checked ~ .tab-nav .tabs-wrap label[for="r-dashboard"],
+#r-clients:checked ~ .tab-nav .tabs-wrap label[for="r-clients"],
+#r-tasks:checked ~ .tab-nav .tabs-wrap label[for="r-tasks"],
+#r-briefs:checked ~ .tab-nav .tabs-wrap label[for="r-briefs"],
+#r-onboarding:checked ~ .tab-nav .tabs-wrap label[for="r-onboarding"],
+#r-reports:checked ~ .tab-nav .tabs-wrap label[for="r-reports"],
+#r-team:checked ~ .tab-nav .tabs-wrap label[for="r-team"],
+#r-references:checked ~ .tab-nav .tabs-wrap label[for="r-references"]{color:var(--g);border-bottom-color:var(--g)}
+
+/* Bottom nav label style */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:72px;background:var(--bg2);border-top:1px solid var(--border);z-index:100;justify-content:space-around;align-items:center;padding:0 8px;padding-bottom:env(safe-area-inset-bottom)}
+.bottom-nav label{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--t4);font-size:11px;font-weight:600;padding:10px 16px;border-radius:12px;cursor:pointer;min-width:64px;-webkit-tap-highlight-color:transparent}
+.bottom-nav label i{font-size:22px}
+
+</style>
+</head>
+<body>
+
+<input type="radio" name="nav" id="r-home"checked>
+<input type="radio" name="nav" id="r-dashboard">
+<input type="radio" name="nav" id="r-clients">
+<input type="radio" name="nav" id="r-tasks">
+<input type="radio" name="nav" id="r-briefs">
+<input type="radio" name="nav" id="r-onboarding">
+<input type="radio" name="nav" id="r-reports">
+<input type="radio" name="nav" id="r-team">
+<input type="radio" name="nav" id="r-references">
+<input type="radio" name="nav" id="r-more">
+
+<nav class="tab-nav">
+<div class="tab-logo">
+<div class="icon">P</div>
+<div><span>PREMIUM</span><small>Pod 2 System</small></div>
+</div>
+<div class="tabs-wrap" id="tabsWrap">
+<label for="r-home"><i class="fas fa-home"></i>Home</label>
+<label for="r-dashboard"><i class="fas fa-chart-line"></i>Dashboard</label>
+<label for="r-clients"><i class="fas fa-users"></i>Clients</label>
+<label for="r-tasks"><i class="fas fa-tasks"></i>Tasks</label>
+<label for="r-briefs"><i class="fas fa-clipboard-check"></i>Briefs</label>
+<label for="r-onboarding"><i class="fas fa-rocket"></i>Onboarding</label>
+<label for="r-reports"><i class="fas fa-file-alt"></i>Reports</label>
+<label for="r-team"><i class="fas fa-user-friends"></i>Team</label>
+<label for="r-references"><i class="fas fa-book"></i>References</label>
+</div>
+</nav>
+
+<div class="main">
+
+
+<!-- TAB NAV -->
+
+
+<div class="main">
+
+<!-- ========== HOME ========== -->
+<div class="page" id="home">
+<div class="hero">
+<div class="hero-tag">Pod 2 Operating System</div>
+<h1>We Don't Just <em>Market.</em><br>We <em>Build</em> Businesses.</h1>
+<p>Premium is not a marketing agency. It's a system — a methodology designed to deliver consistent, measurable results for every client. Pod 2 operates as a self-contained unit where every team member has full ownership and freedom to intervene across all functions in the interest of client success.</p>
+<div class="vals">
+<div class="val"><i class="fas fa-brain"></i><h4>Brandformance</h4><p>Every action builds the brand AND drives performance. No tradeoffs.</p></div>
+<div class="val"><i class="fas fa-users-cog"></i><h4>Full Ownership</h4><p>Every team member can intervene in any task. No silos, no excuses.</p></div>
+<div class="val"><i class="fas fa-shield-alt"></i><h4>Premium Standard</h4><p>Quality management + quality delivery. Every client gets both.</p></div>
+</div>
+</div>
+
+<!-- CREATIVITY MANIFESTO -->
+<div class="card" style="margin-bottom:24px;border:1px solid var(--glow);background:linear-gradient(135deg,var(--bg2),rgba(0,255,135,.02))">
+<div style="display:flex;align-items:start;gap:20px">
+<div style="width:56px;height:56px;border-radius:14px;background:var(--gdim);border:1px solid var(--glow);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fas fa-fire" style="color:var(--g);font-size:24px"></i></div>
+<div>
+<h3 style="font-size:18px;font-weight:800;color:var(--g);margin-bottom:8px">Creativity is NOT Optional.</h3>
+<p style="font-size:14px;color:var(--t1);line-height:1.8;margin-bottom:16px">At Premium, <strong style="color:var(--w)">completing a task is not the goal</strong> — delivering exceptional work is. Every post, every ad, every report should carry the Premium signature. We don't do generic. We don't do "good enough." We don't copy-paste templates.</p>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+<div style="background:var(--bg3);border-radius:10px;padding:16px">
+<div style="font-size:12px;font-weight:700;color:var(--red);margin-bottom:6px"><i class="fas fa-times-circle" style="margin-right:4px"></i> What We Don't Accept</div>
+<div style="font-size:11px;color:var(--t2);line-height:1.8">
+• "Done" without creativity<br>
+• Copy-paste from competitors<br>
+• Generic templates without thought<br>
+• Rushing to check a box<br>
+• "That's not my job" mentality
+</div>
+</div>
+<div style="background:var(--bg3);border-radius:10px;padding:16px">
+<div style="font-size:12px;font-weight:700;color:var(--g);margin-bottom:6px"><i class="fas fa-check-circle" style="margin-right:4px"></i> What We Expect</div>
+<div style="font-size:11px;color:var(--t2);line-height:1.8">
+• Every deliverable has a creative POV<br>
+• Challenge the brief, propose better ideas<br>
+• If you see something wrong, FIX IT<br>
+• Cross-function collaboration is a duty<br>
+• Premium quality or redo it
+</div>
+</div>
+</div>
+<p style="font-size:13px;color:var(--g);margin-top:16px;font-weight:600;font-style:italic">"You don't just do your job at Premium. You own the outcome. Every outcome."</p>
+</div>
+</div>
+</div>
+
+<div class="card" style="margin-bottom:24px">
+<div class="card-head"><div class="card-title"><i class="fas fa-sitemap"></i>Pod 2 Team Structure</div></div>
+<div class="g4">
+<div class="card team-card" style="border-top:2px solid var(--g)"><div class="team-av" style="background:var(--g)">S</div><div class="team-nm">Seif</div><div class="team-rl">Pod Leader — Strategy & Brand</div><p style="font-size:10px;color:var(--t3)">Leads diagnostic, onboarding, strategy, positioning, financials. The joker — covers any gap.</p></div>
+<div class="card team-card" style="border-top:2px solid var(--blue)"><div class="team-av" style="background:var(--blue)">Z</div><div class="team-nm">Ziad</div><div class="team-rl">Creative & Content Lead</div><p style="font-size:10px;color:var(--t3)">Competitor analysis, creative direction, social media, content strategy, influencer, copywriting.</p></div>
+<div class="card team-card" style="border-top:2px solid var(--yellow)"><div class="team-av" style="background:var(--yellow)">J</div><div class="team-nm">Jimmy</div><div class="team-rl">Performance & Data</div><p style="font-size:10px;color:var(--t3)">Media buying, paid ads, tracking, attribution, analytics, ROI optimization, scaling.</p></div>
+<div class="card team-card" style="border-top:2px solid var(--purple)"><div class="team-av" style="background:var(--purple)">R</div><div class="team-nm">Raneem</div><div class="team-rl">Operations & E-commerce</div><p style="font-size:10px;color:var(--t3)">Shopify, fulfillment, CS, task management, publishing, client ops backbone.</p></div>
+</div>
+</div>
+
+<div class="card" style="margin-bottom:24px">
+<div class="card-head"><div class="card-title"><i class="fas fa-route"></i>Client Onboarding Flow (Day 1–7)</div></div>
+<div class="flow">
+<div class="flow-step"><div class="flow-num">DAY 1-2</div><h5>Diagnostic Briefs</h5><p>Each member conducts their brief with client in parallel</p></div>
+<div class="flow-step"><div class="flow-num">DAY 2-3</div><h5>Internal Sync</h5><p>Team reviews findings, aligns on strategy direction</p></div>
+<div class="flow-step"><div class="flow-num">DAY 3-4</div><h5>Plans Presentation</h5><p>Strategy + Content + Media + Ops plans presented to client</p></div>
+<div class="flow-step"><div class="flow-num">DAY 5-7</div><h5>Execution Begins</h5><p>Tasks uploaded, content scheduled, ads launched, store live</p></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-head"><div class="card-title"><i class="fas fa-calendar-alt"></i>Monthly Operating Rhythm</div></div>
+<div class="g2">
+<div>
+<div class="week-title"><i class="fas fa-chevron-right"></i>Week 1 — Foundation & Launch</div>
+<div style="font-size:12px;color:var(--t2);line-height:1.7;padding-left:16px">
+<b style="color:var(--w)">Seif:</b> Strategy finalization, KPI targets set<br>
+<b style="color:var(--w)">Ziad:</b> Content pillars, first week content ready, mood board<br>
+<b style="color:var(--w)">Jimmy:</b> Pixels verified, campaigns launched, first ROAS tracked<br>
+<b style="color:var(--w)">Raneem:</b> Store QA, first orders processed, CS active
+</div>
+<div class="week-title" style="margin-top:20px"><i class="fas fa-chevron-right"></i>Week 2 — Optimize & Scale</div>
+<div style="font-size:12px;color:var(--t2);line-height:1.7;padding-left:16px">
+<b style="color:var(--w)">Seif:</b> Review Week 1 data, strategy adjustments<br>
+<b style="color:var(--w)">Ziad:</b> Content performance review, creative refresh<br>
+<b style="color:var(--w)">Jimmy:</b> A/B tests, scale winners, pause losers<br>
+<b style="color:var(--w)">Raneem:</b> Ops optimization, CS patterns identified
+</div>
+</div>
+<div>
+<div class="week-title"><i class="fas fa-chevron-right"></i>Week 3 — Accelerate</div>
+<div style="font-size:12px;color:var(--t2);line-height:1.7;padding-left:16px">
+<b style="color:var(--w)">Seif:</b> Mid-month review, client check-in<br>
+<b style="color:var(--w)">Ziad:</b> Next month content plan starts, influencer outreach<br>
+<b style="color:var(--w)">Jimmy:</b> Budget reallocation, new audiences, retargeting push<br>
+<b style="color:var(--w)">Raneem:</b> Next month publishing calendar, task cleanup
+</div>
+<div class="week-title" style="margin-top:20px"><i class="fas fa-chevron-right"></i>Week 4 — Report & Plan</div>
+<div style="font-size:12px;color:var(--t2);line-height:1.7;padding-left:16px">
+<b style="color:var(--w)">Seif:</b> Monthly report meeting with client<br>
+<b style="color:var(--w)">Ziad:</b> Next month content ready, creative deck<br>
+<b style="color:var(--w)">Jimmy:</b> Monthly performance report, next month budget<br>
+<b style="color:var(--w)">Raneem:</b> Weekly report summary, next month tasks uploaded
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== DASHBOARD ========== -->
+<div class="page" id="dashboard">
+<div class="stats">
+<div class="stat c1"><div class="stat-label">Active Clients</div><div class="stat-val" id="statClients">0</div><div class="stat-sub">Pod 2</div></div>
+<div class="stat c2"><div class="stat-label">Open Tasks</div><div class="stat-val" id="statTasks">0</div><div class="stat-sub">To Do + In Progress</div></div>
+<div class="stat c3"><div class="stat-label">Briefs Complete</div><div class="stat-val" id="statBriefs">0%</div><div class="stat-sub">Onboarding progress</div></div>
+<div class="stat c4"><div class="stat-label">Completion Rate</div><div class="stat-val" id="statRate">0%</div><div class="stat-sub">This week</div></div>
+</div>
+<div class="g2">
+<div class="card">
+<div class="card-head"><div class="card-title"><i class="fas fa-bolt"></i>Recent Activity</div></div>
+<div id="activityFeed"></div>
+</div>
+<div class="card">
+<div class="card-head"><div class="card-title"><i class="fas fa-flag"></i>Overdue Tasks</div></div>
+<div id="overdueFeed"><p style="font-size:13px;color:var(--t3)">No overdue tasks</p></div>
+</div>
+</div>
+</div>
+
+<!-- ========== CLIENTS ========== -->
+<div class="page" id="clients">
+<div id="clientsList">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+<h2 style="font-size:22px;font-weight:800;color:var(--w)">Clients</h2>
+<button class="btn btn-g" onclick="openModal('client')"><i class="fas fa-plus"></i>Add Client</button>
+</div>
+<div class="card">
+<div class="tbl-wrap">
+<table>
+<thead><tr><th>Client</th><th>Industry</th><th>Type</th><th>Status</th><th>Onboarding</th><th>Actions</th></tr></thead>
+<tbody id="clientsTable"></tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="clientDetail" style="display:none"></div>
+</div>
+
+<!-- ========== TASKS ========== -->
+<div class="page" id="tasks">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px">
+<h2 style="font-size:22px;font-weight:800;color:var(--w)">Tasks</h2>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<select id="taskFilterClient" class="btn btn-o" style="padding:7px 12px" onchange="renderTasks()"><option value="">All Clients</option></select>
+<select id="taskFilterAssign" class="btn btn-o" style="padding:7px 12px" onchange="renderTasks()"><option value="">All Members</option><option>Seif</option><option>Ziad</option><option>Jimmy</option><option>Raneem</option></select>
+<select id="taskFilterStatus" class="btn btn-o" style="padding:7px 12px" onchange="renderTasks()"><option value="">All Status</option><option>To Do</option><option>In Progress</option><option>Uploaded</option><option>Waiting Approval</option><option>Approved</option><option>Done</option></select>
+<button class="btn btn-g" onclick="openModal('task')"><i class="fas fa-plus"></i>Add Task</button>
+</div>
+</div>
+<div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><div id="taskBoard" style="display:grid;grid-template-columns:repeat(6,minmax(200px,1fr));gap:12px;align-items:start"></div></div>
+</div>
+
+<!-- ========== BRIEFS ========== -->
+<div class="page" id="briefs">
+<h2 style="font-size:22px;font-weight:800;color:var(--w);margin-bottom:24px">Brief Tracker</h2>
+<div id="briefsGrid" class="g2"></div>
+</div>
+
+<!-- ========== ONBOARDING ========== -->
+<div class="page" id="onboarding">
+<h2 style="font-size:22px;font-weight:800;color:var(--w);margin-bottom:8px">Onboarding Flow</h2>
+<p style="font-size:13px;color:var(--t3);margin-bottom:24px">Step-by-step process for every new client joining Pod 2</p>
+<div class="flow" style="margin-bottom:32px">
+<div class="flow-step" style="border-top:2px solid var(--g)"><div class="flow-num">PHASE 1</div><h5>Diagnostic Briefs</h5><p>Day 1-2: Each team member conducts their specialized brief with the client</p></div>
+<div class="flow-step" style="border-top:2px solid var(--blue)"><div class="flow-num">PHASE 2</div><h5>Strategy & Plans</h5><p>Day 2-3: Team syncs internally, builds strategy + content + media + ops plans</p></div>
+<div class="flow-step" style="border-top:2px solid var(--yellow)"><div class="flow-num">PHASE 3</div><h5>Client Presentation</h5><p>Day 3-4: Present all plans to client, get approval, collect assets</p></div>
+<div class="flow-step" style="border-top:2px solid var(--purple)"><div class="flow-num">PHASE 4</div><h5>Execution Launch</h5><p>Day 5-7: Tasks uploaded, content scheduled, ads live, store ready</p></div>
+</div>
+<div class="g2">
+<div class="card">
+<div class="card-title" style="margin-bottom:16px"><i class="fas fa-clipboard-list"></i>Brief Assignments</div>
+<div class="brief-item"><div class="brief-top"><b><span style="color:var(--g)">Seif</span> — Strategy & Brand Brief</b></div><p style="font-size:11px;color:var(--t3);line-height:1.6">Positioning, STP, pricing, customer journey, financials, growth strategy. Leads the diagnostic meeting.</p></div>
+<div class="brief-item"><div class="brief-top"><b><span style="color:var(--blue)">Ziad</span> — Creative & Content Brief</b></div><p style="font-size:11px;color:var(--t3);line-height:1.6">Competitors, creative direction, social media preferences, influencer, brand voice, content assets.</p></div>
+<div class="brief-item"><div class="brief-top"><b><span style="color:var(--yellow)">Jimmy</span> — Performance & Data Brief</b></div><p style="font-size:11px;color:var(--t3);line-height:1.6">Ad goals, budget, targeting, platform preferences, tracking setup, historical performance, ROI.</p></div>
+<div class="brief-item"><div class="brief-top"><b><span style="color:var(--purple)">Raneem</span> — Operations & E-commerce Brief</b></div><p style="font-size:11px;color:var(--t3);line-height:1.6">Store setup, products, payments, shipping, returns, CS expectations, social accounts.</p></div>
+</div>
+<div class="card">
+<div class="card-title" style="margin-bottom:16px"><i class="fas fa-cogs"></i>After Briefs (Day 3-7)</div>
+<div class="brief-item"><div class="brief-top"><b><span style="color:var(--g)">Seif</span> — Delivers</b></div><p style="font-size:11px;color:var(--t3);line-height:1.6">Full marketing strategy, brand identity direction, pricing model, KPI targets, financial projections.</p></div>
+<div class="brief-item"><div class="brief-top"><b><span style="color:var(--blue)">Ziad</span> — Delivers</b></div><p style="font-size:11px;color:var(--t3);line-height:1.6">Content plan, mood board, social media strategy, caption templates, first month calendar, influencer list.</p></div>
+<div class="brief-item"><div class="brief-top"><b><span style="color:var(--yellow)">Jimmy</span> — Delivers</b></div><p style="font-size:11px;color:var(--t3);line-height:1.6">Media buying plan, campaign structure, pixel setup, tracking verification, budget allocation, launch ads.</p></div>
+<div class="brief-item"><div class="brief-top"><b><span style="color:var(--purple)">Raneem</span> — Delivers</b></div><p style="font-size:11px;color:var(--t3);line-height:1.6">Store setup/audit complete, task board uploaded, publishing calendar ready, CS framework active.</p></div>
+</div>
+</div>
+</div>
+
+<!-- ========== REPORTS ========== -->
+<div class="page" id="reports">
+<h2 style="font-size:22px;font-weight:800;color:var(--w);margin-bottom:8px">Reports</h2>
+<p style="font-size:13px;color:var(--t3);margin-bottom:24px">Weekly & monthly reports per client — managed by Raneem</p>
+<div id="reportsGrid" class="g2"></div>
+</div>
+
+<!-- ========== TEAM ========== -->
+<div class="page" id="team">
+<h2 style="font-size:22px;font-weight:800;color:var(--w);margin-bottom:8px">Pod 2 Team</h2>
+<p style="color:var(--g3);font-size:13px;margin-bottom:24px">Every member has full freedom to contribute across all functions. No silos — everyone owns the outcome.</p>
+<div class="g4" id="teamGrid"></div>
+
+<!-- SEIF DETAIL -->
+<div class="card" style="margin-top:24px">
+<div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+<div style="width:48px;height:48px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:var(--bg)">S</div>
+<div><div style="font-size:16px;font-weight:700;color:var(--w)">Seif — Pod Leader & Marketing Strategist</div><div style="font-size:11px;color:var(--g3)">Oversees all functions. The joker — can do everything.</div></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div>
+<h4 style="font-size:12px;color:var(--g);font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">📋 Onboarding Brief Scope</h4>
+<div style="font-size:12px;color:var(--g1);line-height:2">
+• Brand Foundation & Positioning (USPs, POD, RTB)<br>
+• STP Analysis (Segmentation, Targeting, Positioning)<br>
+• Pricing Strategy (model, competitors, margins)<br>
+• Customer Journey Mapping (all stages)<br>
+• Financial Projections (revenue, COGS, scenarios)<br>
+• Brand Story & Growth Plans<br>
+• Business Audit (existing clients)<br>
+• Market Position & SWOT<br>
+• Customer Base Analysis<br>
+• Brand Health Check<br>
+• Growth Strategy & KPIs<br>
+• Budget & ROI Planning
+</div>
+</div>
+<div>
+<h4 style="font-size:12px;color:var(--g);font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">⚡ Ongoing Responsibilities</h4>
+<div style="font-size:12px;color:var(--g1);line-height:2">
+• Synthesize all 4 briefs into unified strategy<br>
+• Build marketing strategy & plans from insights<br>
+• Lead client presentations (Day 4)<br>
+• Client check-ins (Week 2)<br>
+• Strategic decisions on campaigns<br>
+• Monthly strategy review & next month planning<br>
+• Final approval on major deliverables<br>
+• Escalation point for team issues<br>
+• Quarterly business review with clients
+</div>
+</div>
+</div>
+</div>
+
+<!-- ZIAD DETAIL -->
+<div class="card">
+<div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+<div style="width:48px;height:48px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:var(--bg)">Z</div>
+<div><div style="font-size:16px;font-weight:700;color:var(--w)">Ziad — Creative & Content Lead</div><div style="font-size:11px;color:var(--g3)">Strong in social media, creative direction, market research, competitive analysis, copywriting.</div></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div>
+<h4 style="font-size:12px;color:var(--blue);font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">📋 Onboarding Brief Scope</h4>
+<div style="font-size:12px;color:var(--g1);line-height:2">
+• Competitor Deep Dive (top 3-5, creative benchmarks)<br>
+• Social Media Direction (platforms, style, themes)<br>
+• Content & Creative Direction (visual identity, assets)<br>
+• Influencer & Partnerships preferences<br>
+• Brand Voice for Social (tone, engagement style)<br>
+• Current SM Assessment (existing clients)<br>
+• Current Content Assessment<br>
+• Email & SMS audit<br>
+• What Worked / What Failed (creative history)
+</div>
+</div>
+<div>
+<h4 style="font-size:12px;color:var(--blue);font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">⚡ Ongoing Responsibilities</h4>
+<div style="font-size:12px;color:var(--g1);line-height:2">
+• Build mood boards & visual direction (Day 3)<br>
+• Create content pillars & monthly content plan<br>
+• Design all creative assets (posts, stories, reels)<br>
+• Write copy & captions<br>
+• Competitor monitoring (bi-weekly)<br>
+• Creative refresh for ads (Week 2)<br>
+• Approve content before Raneem publishes<br>
+• Content production coordination (shoots, UGC)<br>
+• Monthly trend research & adaptation
+</div>
+</div>
+</div>
+</div>
+
+<!-- JIMMY DETAIL -->
+<div class="card">
+<div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+<div style="width:48px;height:48px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:var(--bg)">J</div>
+<div><div style="font-size:16px;font-weight:700;color:var(--w)">Jimmy — Performance & Data Specialist</div><div style="font-size:11px;color:var(--g3)">Strong in media buying. Owns all paid advertising and data.</div></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div>
+<h4 style="font-size:12px;color:var(--yellow);font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">📋 Onboarding Brief Scope</h4>
+<div style="font-size:12px;color:var(--g1);line-height:2">
+• Advertising Goals & Budget<br>
+• Target Audience for Ads<br>
+• Platform Preferences (Meta, TikTok, Google, Snap)<br>
+• Creative for Ads (available assets)<br>
+• Tracking & Data (pixels, analytics, UTMs)<br>
+• Current Ad Performance Audit (existing)<br>
+• Historical Campaign Review<br>
+• Tracking & Attribution Audit<br>
+• ROI & Financial Goals<br>
+• Website & Conversion assessment
+</div>
+</div>
+<div>
+<h4 style="font-size:12px;color:var(--yellow);font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">⚡ Ongoing Responsibilities</h4>
+<div style="font-size:12px;color:var(--g1);line-height:2">
+• Build paid advertising strategy (Day 3)<br>
+• Set up campaign structures & targeting<br>
+• Install & verify all tracking pixels<br>
+• Launch & monitor ad campaigns<br>
+• Performance review (Week 2)<br>
+• Scale/optimize winning campaigns (Week 3)<br>
+• A/B test creatives and audiences<br>
+• Weekly ROAS/CPA/CVR reporting<br>
+• Budget reallocation recommendations<br>
+• Competitor ads intelligence (monthly)
+</div>
+</div>
+</div>
+</div>
+
+<!-- RANEEM DETAIL -->
+<div class="card">
+<div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+<div style="width:48px;height:48px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:var(--bg)">R</div>
+<div><div style="font-size:16px;font-weight:700;color:var(--w)">Raneem — Operations & E-commerce Specialist</div><div style="font-size:11px;color:var(--g3)">Versatile. Knows Shopify, publishing, task management. Operational backbone of Pod 2.</div></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div>
+<h4 style="font-size:12px;color:var(--purple);font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">📋 Onboarding Brief Scope</h4>
+<div style="font-size:12px;color:var(--g1);line-height:2">
+• E-commerce & Store Setup (platform, features, apps)<br>
+• Products & Inventory (listings, packaging)<br>
+• Payment & Pricing Setup<br>
+• Shipping & Logistics<br>
+• Returns & After-Sales<br>
+• Customer Service Expectations<br>
+• Social Media Accounts info<br>
+• Current Website/Store Audit (existing)<br>
+• Current Operations & Fulfillment<br>
+• Customer Service Assessment<br>
+• Technology & Tools audit
+</div>
+</div>
+<div>
+<h4 style="font-size:12px;color:var(--purple);font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">⚡ Ongoing Responsibilities</h4>
+<div style="font-size:12px;color:var(--g1);line-height:2">
+• Set up / audit Shopify store (Day 3)<br>
+• Collect all client assets & credentials<br>
+• Upload tasks with Function + Frequency + Priority<br>
+• Daily task follow-up & status updates<br>
+• Publishing calendar management<br>
+• Publish content (after Ziad approval)<br>
+• Quality check before publishing<br>
+• Weekly report to Seif (tasks + publishing)<br>
+• Monthly report compilation<br>
+• Client communication log
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== REFERENCES ==================== -->
+<div class="page" id="references">
+<h2 style="font-size:22px;font-weight:800;color:var(--w);margin-bottom:8px">References & Resources</h2>
+<p style="color:var(--g3);font-size:13px;margin-bottom:32px">All onboarding briefs, system documentation, and operational guides for Pod 2.</p>
+
+<!-- BRIEFS DOWNLOAD -->
+<div class="card">
+<div style="margin-bottom:20px">
+<h3 style="font-size:16px;font-weight:700;color:var(--w);margin-bottom:4px"><i class="fas fa-file-pdf" style="color:var(--red);margin-right:8px"></i>Onboarding Briefs</h3>
+<p style="font-size:12px;color:var(--g3)">Each team member uses their brief to conduct client onboarding. Click to access.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px">
+
+<div style="background:var(--bg3);border:1px solid var(--bg4);border-radius:10px;padding:20px;display:flex;gap:16px;align-items:start;transition:all .3s;cursor:pointer" onmouseover="this.style.borderColor='var(--g)'" onmouseout="this.style.borderColor='var(--bg4)'">
+<div style="width:44px;height:44px;border-radius:10px;background:rgba(0,255,135,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fas fa-chess-king" style="color:var(--g);font-size:18px"></i></div>
+<div>
+<div style="font-size:14px;font-weight:700;color:var(--w);margin-bottom:4px">Brief_Seif_Strategy.pdf</div>
+<div style="font-size:11px;color:var(--g3);margin-bottom:8px">Strategy & Brand Onboarding — 23 pages</div>
+<div style="font-size:11px;color:var(--g2);line-height:1.6;margin-bottom:10px">Positioning, STP, Pricing, Customer Journey, Financials, Brand Story, Business Audit, SWOT, Customer Base, Brand Health, Growth & KPIs</div>
+<div style="font-size:10px;color:var(--g);padding:3px 10px;background:rgba(0,255,135,.08);border:1px solid rgba(0,255,135,.15);border-radius:12px;display:inline-block">Part A: From Scratch + Part B: Existing + Part C: Premium</div>
+</div>
+</div>
+
+<div style="background:var(--bg3);border:1px solid var(--bg4);border-radius:10px;padding:20px;display:flex;gap:16px;align-items:start;transition:all .3s;cursor:pointer" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='var(--bg4)'">
+<div style="width:44px;height:44px;border-radius:10px;background:rgba(102,179,255,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fas fa-palette" style="color:var(--blue);font-size:18px"></i></div>
+<div>
+<div style="font-size:14px;font-weight:700;color:var(--w);margin-bottom:4px">Brief_Ziad_Creative.pdf</div>
+<div style="font-size:11px;color:var(--g3);margin-bottom:8px">Creative & Content Onboarding — 15 pages</div>
+<div style="font-size:11px;color:var(--g2);line-height:1.6;margin-bottom:10px">Competitor Deep Dive, Social Media Direction, Content & Creative Direction, Influencer Strategy, Brand Voice, SM Assessment, Email Audit</div>
+<div style="font-size:10px;color:var(--blue);padding:3px 10px;background:rgba(102,179,255,.08);border:1px solid rgba(102,179,255,.15);border-radius:12px;display:inline-block">Part A: From Scratch + Part B: Existing + Part C: Premium</div>
+</div>
+</div>
+
+<div style="background:var(--bg3);border:1px solid var(--bg4);border-radius:10px;padding:20px;display:flex;gap:16px;align-items:start;transition:all .3s;cursor:pointer" onmouseover="this.style.borderColor='var(--yellow)'" onmouseout="this.style.borderColor='var(--bg4)'">
+<div style="width:44px;height:44px;border-radius:10px;background:rgba(255,214,102,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fas fa-chart-bar" style="color:var(--yellow);font-size:18px"></i></div>
+<div>
+<div style="font-size:14px;font-weight:700;color:var(--w);margin-bottom:4px">Brief_Jimmy_Performance.pdf</div>
+<div style="font-size:11px;color:var(--g3);margin-bottom:8px">Performance & Data Onboarding — 13 pages</div>
+<div style="font-size:11px;color:var(--g2);line-height:1.6;margin-bottom:10px">Ad Goals & Budget, Target Audience, Platform Preferences, Creative for Ads, Tracking & Data, Current Performance Audit, ROI, Website & Conversion</div>
+<div style="font-size:10px;color:var(--yellow);padding:3px 10px;background:rgba(255,214,102,.08);border:1px solid rgba(255,214,102,.15);border-radius:12px;display:inline-block">Part A: From Scratch + Part B: Existing + Part C: Premium</div>
+</div>
+</div>
+
+<div style="background:var(--bg3);border:1px solid var(--bg4);border-radius:10px;padding:20px;display:flex;gap:16px;align-items:start;transition:all .3s;cursor:pointer" onmouseover="this.style.borderColor='var(--purple)'" onmouseout="this.style.borderColor='var(--bg4)'">
+<div style="width:44px;height:44px;border-radius:10px;background:rgba(179,136,255,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fas fa-cogs" style="color:var(--purple);font-size:18px"></i></div>
+<div>
+<div style="font-size:14px;font-weight:700;color:var(--w);margin-bottom:4px">Brief_Raneem_Operations.pdf</div>
+<div style="font-size:11px;color:var(--g3);margin-bottom:8px">Operations & E-commerce Onboarding — 19 pages</div>
+<div style="font-size:11px;color:var(--g2);line-height:1.6;margin-bottom:10px">E-commerce Setup, Products & Inventory, Payment, Shipping, Returns, Customer Service, Website Audit, Fulfillment, Tech Stack, Automation</div>
+<div style="font-size:10px;color:var(--purple);padding:3px 10px;background:rgba(179,136,255,.08);border:1px solid rgba(179,136,255,.15);border-radius:12px;display:inline-block">Part A: From Scratch + Part B: Existing + Part C: Premium</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- SYSTEM DOCUMENTATION -->
+<div class="card">
+<div style="margin-bottom:20px">
+<h3 style="font-size:16px;font-weight:700;color:var(--w);margin-bottom:4px"><i class="fas fa-book-open" style="color:var(--g);margin-right:8px"></i>System Documentation</h3>
+<p style="font-size:12px;color:var(--g3)">How the Pod 2 system works — processes, cycles, and standards.</p>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr;gap:12px">
+
+<div style="background:var(--bg3);border:1px solid var(--bg4);border-radius:10px;padding:20px">
+<h4 style="font-size:14px;font-weight:700;color:var(--g);margin-bottom:12px"><i class="fas fa-route" style="margin-right:8px"></i>Client Onboarding Process (7 Days)</h4>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+<div style="background:var(--bg4);border-radius:8px;padding:14px">
+<div style="font-size:10px;color:var(--g);font-weight:700;letter-spacing:1px;margin-bottom:6px">PHASE 1: DIAGNOSTIC</div>
+<div style="font-size:11px;color:var(--g2);line-height:1.7">
+<strong style="color:var(--w)">Day 1-2:</strong> All 4 team members conduct their briefs with the client. Seif + Raneem do welcome meeting. Each person asks their specific onboarding questions.
+</div>
+</div>
+<div style="background:var(--bg4);border-radius:8px;padding:14px">
+<div style="font-size:10px;color:var(--g);font-weight:700;letter-spacing:1px;margin-bottom:6px">PHASE 2: BUILD</div>
+<div style="font-size:11px;color:var(--g2);line-height:1.7">
+<strong style="color:var(--w)">Day 3-4:</strong> Each person builds their deliverables from brief insights. Seif: strategy. Ziad: creative plan. Jimmy: media plan. Raneem: operations setup. Day 4: present to client.
+</div>
+</div>
+<div style="background:var(--bg4);border-radius:8px;padding:14px">
+<div style="font-size:10px;color:var(--g);font-weight:700;letter-spacing:1px;margin-bottom:6px">PHASE 3: EXECUTE</div>
+<div style="font-size:11px;color:var(--g2);line-height:1.7">
+<strong style="color:var(--w)">Day 5-7:</strong> Tasks distributed. Content production starts. Ads prepared and launched. Day 7: GO LIVE — first content published, first ads live.
+</div>
+</div>
+</div>
+</div>
+
+<div style="background:var(--bg3);border:1px solid var(--bg4);border-radius:10px;padding:20px">
+<h4 style="font-size:14px;font-weight:700;color:var(--g);margin-bottom:12px"><i class="fas fa-sync-alt" style="margin-right:8px"></i>Monthly Operations Cycle</h4>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+<div style="background:var(--bg4);border-radius:8px;padding:14px">
+<div style="font-size:10px;color:var(--g);font-weight:700;margin-bottom:6px">WEEK 1</div>
+<div style="font-size:11px;color:var(--g2);line-height:1.7">Execute month plans. Launch campaigns. Publish content. Weekly report.</div>
+</div>
+<div style="background:var(--bg4);border-radius:8px;padding:14px">
+<div style="font-size:10px;color:var(--g);font-weight:700;margin-bottom:6px">WEEK 2</div>
+<div style="font-size:11px;color:var(--g2);line-height:1.7">Performance review. Creative refresh. Client check-in. Weekly report.</div>
+</div>
+<div style="background:var(--bg4);border-radius:8px;padding:14px">
+<div style="font-size:10px;color:var(--g);font-weight:700;margin-bottom:6px">WEEK 3</div>
+<div style="font-size:11px;color:var(--g2);line-height:1.7">Scale/optimize ads. Competitor check. Operations review. Weekly report.</div>
+</div>
+<div style="background:var(--bg4);border-radius:8px;padding:14px">
+<div style="font-size:10px;color:var(--g);font-weight:700;margin-bottom:6px">WEEK 4</div>
+<div style="font-size:11px;color:var(--g2);line-height:1.7">Monthly report. Next month plans. Content planning. Client meeting.</div>
+</div>
+</div>
+</div>
+
+<div style="background:var(--bg3);border:1px solid var(--bg4);border-radius:10px;padding:20px">
+<h4 style="font-size:14px;font-weight:700;color:var(--g);margin-bottom:12px"><i class="fas fa-layer-group" style="margin-right:8px"></i>Task Classification System (3 Dimensions)</h4>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+<div style="background:var(--bg4);border-radius:8px;padding:14px">
+<div style="font-size:10px;color:var(--g);font-weight:700;margin-bottom:8px">1. FUNCTION (WHO)</div>
+<div style="font-size:11px;color:var(--g2);line-height:1.8">
+<span style="color:var(--g)">●</span> Strategy — Seif<br>
+<span style="color:var(--blue)">●</span> Creative — Ziad<br>
+<span style="color:var(--yellow)">●</span> Performance — Jimmy<br>
+<span style="color:var(--purple)">●</span> Operations — Raneem<br>
+<em style="color:var(--g3)">Any member can intervene</em>
+</div>
+</div>
+<div style="background:var(--bg4);border-radius:8px;padding:14px">
+<div style="font-size:10px;color:var(--g);font-weight:700;margin-bottom:8px">2. FREQUENCY (WHEN)</div>
+<div style="font-size:11px;color:var(--g2);line-height:1.8">
+Daily tasks<br>
+Weekly tasks<br>
+Bi-weekly tasks<br>
+Monthly tasks<br>
+One-time tasks<br>
+<em style="color:var(--g3)">Tracked in task system</em>
+</div>
+</div>
+<div style="background:var(--bg4);border-radius:8px;padding:14px">
+<div style="font-size:10px;color:var(--g);font-weight:700;margin-bottom:8px">3. PRIORITY (LEVEL)</div>
+<div style="font-size:11px;color:var(--g2);line-height:1.8">
+<span class="pdot must"></span> Must Do — non-negotiable<br>
+<span class="pdot should"></span> Should Do — important<br>
+<span class="pdot nice"></span> Nice to Have — bonus<br>
+<br>
+<em style="color:var(--g3)">Escalate overdue 24h+ to Seif</em>
+</div>
+</div>
+</div>
+</div>
+
+<div style="background:var(--bg3);border:1px solid var(--bg4);border-radius:10px;padding:20px">
+<h4 style="font-size:14px;font-weight:700;color:var(--g);margin-bottom:12px"><i class="fas fa-star" style="margin-right:8px"></i>Premium Service Model</h4>
+<div style="font-size:12px;color:var(--g2);line-height:1.8">
+<strong style="color:var(--w)">We are not just marketers.</strong> Premium is a brandformance agency — we combine brand building with performance marketing. Every client gets:<br><br>
+<strong style="color:var(--g)">Required Basics:</strong> Strategy, content plan, paid ads management, operations setup, weekly reporting, monthly reporting.<br>
+<strong style="color:var(--g)">Extra Retention:</strong> Competitor intelligence, trend research, creative testing, CRO audits, loyalty programs, brand architecture — varies per client needs.<br><br>
+<strong style="color:var(--w)">Key Principle:</strong> Every team member has full freedom to contribute across all functions. There are no silos. If Ziad sees a performance issue, he flags it. If Jimmy has a creative idea, he shares it. If Raneem spots a strategy gap, she raises it. The client's success is everyone's responsibility.
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- NEXT STEPS / ROADMAP -->
+<div class="card">
+<div style="margin-bottom:20px">
+<h3 style="font-size:16px;font-weight:700;color:var(--w);margin-bottom:4px"><i class="fas fa-road" style="color:var(--yellow);margin-right:8px"></i>System Roadmap — What's Next</h3>
+<p style="font-size:12px;color:var(--g3)">Planned improvements and expansions for the Pod 2 system.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+<div style="background:var(--bg3);border:1px solid var(--greenborder);border-radius:10px;padding:16px">
+<div style="font-size:10px;color:var(--g);font-weight:700;margin-bottom:6px">✅ COMPLETED</div>
+<div style="font-size:12px;color:var(--g2);line-height:1.8">
+• 4 onboarding briefs (Seif, Ziad, Jimmy, Raneem)<br>
+• Pod 2 Operations System (this dashboard)<br>
+• Onboarding flow (7-day process)<br>
+• Task classification (3 dimensions)<br>
+• Monthly operations cycle<br>
+• Team roles & responsibilities
+</div>
+</div>
+<div style="background:var(--bg3);border:1px solid rgba(255,214,102,.15);border-radius:10px;padding:16px">
+<div style="font-size:10px;color:var(--yellow);font-weight:700;margin-bottom:6px">🔜 NEXT UP</div>
+<div style="font-size:12px;color:var(--g2);line-height:1.8">
+• Client onboarding flow (step-by-step automation)<br>
+• Weekly/monthly report templates (per client)<br>
+• Deliverables checklist (must-do vs extra per client)<br>
+• SLA tracker (response times, delivery times)<br>
+• Client satisfaction scoring<br>
+• Pod performance metrics & benchmarks
+</div>
+</div>
+<div style="background:var(--bg3);border:1px solid rgba(102,179,255,.15);border-radius:10px;padding:16px">
+<div style="font-size:10px;color:var(--blue);font-weight:700;margin-bottom:6px">💡 FUTURE IDEAS</div>
+<div style="font-size:12px;color:var(--g2);line-height:1.8">
+• Auto-generate reports from task data<br>
+• Client portal (share reports externally)<br>
+• Campaign performance dashboard (live ROAS)<br>
+• Content calendar with visual preview<br>
+• Notification system (overdue, deadlines)<br>
+• Multi-pod support (Pod 1, Pod 3...)<br>
+• AI-powered task suggestions
+</div>
+</div>
+<div style="background:var(--bg3);border:1px solid rgba(179,136,255,.15);border-radius:10px;padding:16px">
+<div style="font-size:10px;color:var(--purple);font-weight:700;margin-bottom:6px">🎯 SYSTEM PRINCIPLES</div>
+<div style="font-size:12px;color:var(--g2);line-height:1.8">
+• Everything documented in one place<br>
+• No tribal knowledge — system over people<br>
+• New team member onboards in 1 day<br>
+• Client handoff is seamless<br>
+• Accountability through transparency<br>
+• Quality controlled through checklists
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- /main -->
+
+<!-- MODALS -->
+<div class="overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+<div class="modal" id="modalContent"></div>
+</div>
+
+
+</div>
+
+<nav class="bottom-nav">
+<label for="r-home"><i class="fas fa-home"></i><span>Home</span></label>
+<label for="r-dashboard"><i class="fas fa-chart-line"></i><span>Dash</span></label>
+<label for="r-clients"><i class="fas fa-users"></i><span>Clients</span></label>
+<label for="r-tasks"><i class="fas fa-tasks"></i><span>Tasks</span></label>
+<label for="r-more"><i class="fas fa-ellipsis-h"></i><span>More</span></label>
+</nav>
+
+<div class="more-panel">
+<label for="r-briefs"><i class="fas fa-clipboard-check"></i>Briefs Tracker</label>
+<label for="r-onboarding"><i class="fas fa-rocket"></i>Onboarding Flow</label>
+<label for="r-reports"><i class="fas fa-file-alt"></i>Reports</label>
+<label for="r-team"><i class="fas fa-user-friends"></i>Team</label>
+<label for="r-references"><i class="fas fa-book"></i>References</label>
+</div>
+
+<script>
+
+// ===== DATA STORE =====
+let DATA = JSON.parse(localStorage.getItem('pod2data') || 'null') || {
+clients: [
+{id:1,name:'Havenly Cosmetics',industry:'Beauty',type:'Existing',status:'Active',briefs:{seif:100,ziad:80,jimmy:90,raneem:70}},
+{id:2,name:'CLAW',industry:'Streetwear',type:'From Scratch',status:'Onboarding',briefs:{seif:60,ziad:40,jimmy:30,raneem:20}},
+{id:3,name:'Dr. Herb Nutrition',industry:'Supplements',type:'Existing',status:'Active',briefs:{seif:100,ziad:100,jimmy:80,raneem:90}},
+],
+tasks: [
+{id:1,title:'Havenly - Content Plan March',client:'Havenly Cosmetics',assign:'Ziad',status:'In Progress',priority:'Must Do',freq:'Monthly',due:'2026-03-07'},
+{id:2,title:'CLAW - Pixel Setup',client:'CLAW',assign:'Jimmy',status:'To Do',priority:'Must Do',freq:'Once',due:'2026-03-05'},
+{id:3,title:'Havenly - Monthly Report Feb',client:'Havenly Cosmetics',assign:'Raneem',status:'Review',priority:'Must Do',freq:'Monthly',due:'2026-03-03'},
+{id:4,title:'Dr. Herb - Ramadan Campaign',client:'Dr. Herb Nutrition',assign:'Ziad',status:'In Progress',priority:'Must Do',freq:'Once',due:'2026-03-08'},
+{id:5,title:'CLAW - Brand Strategy',client:'CLAW',assign:'Seif',status:'In Progress',priority:'Must Do',freq:'Once',due:'2026-03-06'},
+{id:6,title:'Dr. Herb - Budget Reallocation',client:'Dr. Herb Nutrition',assign:'Jimmy',status:'Done',priority:'Should Do',freq:'Monthly',due:'2026-03-01'},
+{id:7,title:'Havenly - Shopify Speed Audit',client:'Havenly Cosmetics',assign:'Raneem',status:'To Do',priority:'Should Do',freq:'Monthly',due:'2026-03-10'},
+{id:8,title:'CLAW - Competitor Analysis',client:'CLAW',assign:'Ziad',status:'To Do',priority:'Must Do',freq:'Once',due:'2026-03-04'},
+],
+activities: [
+{text:'Seif started CLAW Brand Strategy',color:'g',time:'2 hours ago'},
+{text:'Raneem uploaded Havenly Feb report for review',color:'y',time:'3 hours ago'},
+{text:'Jimmy completed Dr. Herb budget reallocation',color:'g',time:'5 hours ago'},
+{text:'Ziad started Dr. Herb Ramadan campaign',color:'b',time:'Yesterday'},
+{text:'New client CLAW added to Pod 2',color:'g',time:'Yesterday'},
+],
+nextId:10
+};
+function save(){localStorage.setItem('pod2data',JSON.stringify(DATA))}
+
+// ===== NAVIGATION =====
+
+
+function refreshPage(p){}
+
+// ===== DASHBOARD =====
+function renderDashboard(){
+let active=DATA.clients.filter(c=>c.status==='Active').length;
+let open=DATA.tasks.filter(t=>t.status!=='Done'&&t.status!=='Approved').length;
+let totalBriefs=DATA.clients.length*4;
+let doneBriefs=DATA.clients.reduce((s,c)=>{let b=c.briefs;return s+(b.seif>=100?1:0)+(b.ziad>=100?1:0)+(b.jimmy>=100?1:0)+(b.raneem>=100?1:0)},0);
+let done=DATA.tasks.filter(t=>t.status==='Done').length;
+let rate=DATA.tasks.length?Math.round(done/DATA.tasks.length*100):0;
+document.getElementById('statClients').textContent=DATA.clients.length;
+document.getElementById('statTasks').textContent=open;
+document.getElementById('statBriefs').textContent=totalBriefs?Math.round(doneBriefs/totalBriefs*100)+'%':'0%';
+document.getElementById('statRate').textContent=rate+'%';
+let af=document.getElementById('activityFeed');
+af.innerHTML=DATA.activities.slice(0,6).map(a=>`<div class="act"><div class="act-dot ${a.color}"></div><div><div class="act-txt">${a.text}</div><div class="act-time">${a.time}</div></div></div>`).join('');
+let overdue=DATA.tasks.filter(t=>t.status!=='Done'&&new Date(t.due)<new Date());
+let of2=document.getElementById('overdueFeed');
+of2.innerHTML=overdue.length?overdue.map(t=>`<div class="act"><div class="act-dot r"></div><div><div class="act-txt"><b>${t.title}</b> — ${t.assign}</div><div class="act-time">Due: ${t.due}</div></div></div>`).join(''):'<p style="font-size:13px;color:var(--t3)">No overdue tasks &#10004;</p>';
+}
+
+// ===== CLIENTS =====
+function renderClients(){
+let tb=document.getElementById('clientsTable');
+tb.innerHTML=DATA.clients.map(c=>{
+let bp=c.briefs,avg=Math.round((bp.seif+bp.ziad+bp.jimmy+bp.raneem)/4);
+let sc=c.status==='Active'?'green':c.status==='Onboarding'?'yellow':'red';
+return`<tr style="cursor:pointer" onclick="showClientDetail(${c.id})">
+<td><b style="color:var(--w)">${c.name}</b></td>
+<td>${c.industry}</td>
+<td><span class="badge ${c.type==='From Scratch'?'blue':'purple'}">${c.type}</span></td>
+<td><span class="badge ${sc}">${c.status}</span></td>
+<td><div class="prog" style="width:120px"><div class="fill green" style="width:${avg}%"></div></div><span style="font-size:10px;color:var(--t3)">${avg}%</span></td>
+<td><button class="btn btn-o btn-sm" onclick="event.stopPropagation();editClient(${c.id})"><i class="fas fa-edit"></i></button> <button class="btn btn-o btn-sm" style="color:var(--red)" onclick="event.stopPropagation();deleteClient(${c.id})"><i class="fas fa-trash"></i></button></td>
+</tr>`}).join('');
+let sel=document.getElementById('taskFilterClient');
+let cur=sel.value;
+sel.innerHTML='<option value="">All Clients</option>'+DATA.clients.map(c=>`<option>${c.name}</option>`).join('');
+sel.value=cur;
+}
+
+function showClientDetail(id){
+let c=DATA.clients.find(x=>x.id===id);
+if(!c)return;
+let ct=DATA.tasks.filter(t=>t.client===c.name);
+let seifT=ct.filter(t=>t.assign==='Seif'), ziadT=ct.filter(t=>t.assign==='Ziad'), jimmyT=ct.filter(t=>t.assign==='Jimmy'), raneemT=ct.filter(t=>t.assign==='Raneem');
+let bp=c.briefs, avg=Math.round((bp.seif+bp.ziad+bp.jimmy+bp.raneem)/4);
+let sc=c.status==='Active'?'green':c.status==='Onboarding'?'yellow':'red';
+let isNew=c.type==='From Scratch';
+
+function taskList(tasks){
+if(!tasks.length)return'<p style="font-size:12px;color:var(--t3);padding:8px 0">No tasks yet — add from Tasks page</p>';
+return tasks.map(t=>{
+let pc=t.priority==='Must Do'?'must':t.priority==='Should Do'?'should':'nice';
+let sc2=t.status==='Done'?'green':t.status==='Approved'?'green':t.status==='Waiting Approval'?'orange':t.status==='Uploaded'?'purple':t.status==='In Progress'?'yellow':'blue';
+return`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--bg);border-radius:8px;margin-bottom:6px">
+<div style="flex:1">
+<div style="font-size:12px;font-weight:600;color:var(--w)">${t.title}</div>
+<div style="font-size:10px;color:var(--t3);margin-top:2px"><span class="dot ${pc}"></span>${t.priority} · ${t.freq||'Once'} · Due: ${t.due}</div>
+</div>
+<span class="badge ${sc2}" style="cursor:pointer" onclick="toggleTask(${t.id});showClientDetail(${id})">${t.status}</span>
+</div>`}).join('');
+}
+
+function briefBar(val,color){
+return`<div style="display:flex;align-items:center;gap:8px">
+<div class="prog" style="flex:1"><div class="fill" style="width:${val}%;background:${color}"></div></div>
+<span style="font-size:11px;color:var(--t2);width:30px;text-align:right">${val}%</span>
+</div>`;
+}
+
+// Responsibilities per role per account type
+let seifResp = isNew ? [
+'Build full brand strategy & positioning from scratch',
+'Define USP, POD, RTB for the brand',
+'STP Analysis — segmentation, targeting, positioning',
+'Pricing strategy & competitive pricing map',
+'Customer journey mapping (all touchpoints)',
+'Financial projections & break-even analysis',
+'Set KPIs & success metrics for first 3 months',
+'Present full strategy to client (Day 4)',
+'Monthly strategy review & adjustments',
+'Client check-ins (Week 2 & 4)'
+] : [
+'Audit current brand strategy & positioning',
+'SWOT analysis of current market position',
+'Identify gaps in current customer journey',
+'Reposition brand if needed (POD, RTB refresh)',
+'Review & optimize pricing strategy',
+'Assess current KPIs — set realistic new targets',
+'Build growth plan based on historical data',
+'Present optimization strategy to client',
+'Monthly strategy review & adjustments',
+'Client check-ins (Week 2 & 4)'
+];
+
+let ziadResp = isNew ? [
+'Competitor deep dive — analyze top 3-5 competitors',
+'Build mood board & visual direction from scratch',
+'Define content pillars & brand voice',
+'Create social media strategy (platforms, frequency, style)',
+'Design feed aesthetic & first 12 posts',
+'Monthly content plan (posts, stories, reels)',
+'Write all copy & captions',
+'Influencer shortlist & outreach strategy',
+'Creative for ads (static, video, carousel)',
+'Bi-weekly competitor monitoring & trend adaptation'
+] : [
+'Audit current content & social media performance',
+'Identify best/worst performing content types',
+'Refresh visual direction & feed aesthetic',
+'Revamp content pillars based on data',
+'Monthly content plan (optimized from history)',
+'Creative refresh for ads (test new angles)',
+'Competitor monitoring — what changed?',
+'Email/SMS content strategy (if applicable)',
+'Influencer review — who worked, who didnt',
+'Content calendar management & approval flow'
+];
+
+let jimmyResp = isNew ? [
+'Set up all ad accounts (Meta, TikTok, Google, Snap)',
+'Install & verify all tracking pixels',
+'Set up Google Analytics 4 + e-commerce tracking',
+'Build campaign structure from scratch',
+'Define target audiences & lookalikes',
+'Set initial budget allocation across platforms',
+'Launch first campaigns (Day 5-7)',
+'Daily monitoring first 2 weeks',
+'A/B test creatives & audiences',
+'Weekly ROAS, CPA, CVR reporting'
+] : [
+'Audit current ad accounts & campaign structure',
+'Review pixel health & attribution setup',
+'Analyze historical ROAS, CPA, best campaigns',
+'Identify wasted spend & optimization opportunities',
+'Restructure campaigns for better performance',
+'Scale winning audiences & creatives',
+'Fix tracking gaps (CAPI, UTMs, attribution)',
+'Budget reallocation based on data',
+'A/B test new angles against proven winners',
+'Weekly ROAS, CPA, CVR reporting'
+];
+
+let raneemResp = isNew ? [
+'Set up e-commerce store (Shopify/Salla/WooCommerce)',
+'Upload all products with descriptions & photos',
+'Configure payments (COD, cards, installments)',
+'Set up shipping partner & rates',
+'Create return & refund policy pages',
+'Set up customer service channels (WhatsApp, email)',
+'Install all pixels & tracking tags',
+'Build publishing calendar',
+'Daily task follow-up for all team members',
+'Weekly report compilation & delivery'
+] : [
+'Audit current store (speed, UX, checkout, mobile)',
+'Fix any broken products, links, or descriptions',
+'Review & optimize shipping setup',
+'Audit customer service response times',
+'Review current tools & suggest improvements',
+'Set up missing automations (abandoned cart, etc)',
+'Verify all tracking pixels are firing correctly',
+'Build/update publishing calendar',
+'Daily task follow-up for all team members',
+'Weekly & monthly report compilation'
+];
+
+function respList(items, color){
+return items.map((r,i)=>`<div style="display:flex;gap:8px;padding:6px 0;${i<items.length-1?'border-bottom:1px solid var(--bg4)':''}">
+<span style="color:${color};font-size:10px;margin-top:3px"><i class="fas fa-check"></i></span>
+<span style="font-size:11px;color:var(--t2);line-height:1.5">${r}</span>
+</div>`).join('');
+}
+
+function memberCard(name, initial, color, role, resp, tasks, briefVal){
+let doneCount = tasks.filter(t=>t.status==='Done'||t.status==='Approved').length;
+let waitCount = tasks.filter(t=>t.status==='Waiting Approval'||t.status==='Uploaded').length;
+return`<div class="card" style="margin-bottom:0">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+<div style="width:40px;height:40px;border-radius:50%;background:${color};display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:var(--bg)">${initial}</div>
+<div style="flex:1">
+<div style="font-size:15px;font-weight:700;color:var(--w)">${name}</div>
+<div style="font-size:11px;color:var(--t3)">${role}</div>
+</div>
+<div style="text-align:right">
+<div style="font-size:11px;color:var(--t3)">${tasks.length} tasks</div>
+<div style="font-size:10px;color:var(--g)">${doneCount} done${waitCount?' · <span style=color:var(--yellow)>'+waitCount+' pending</span>':''}</div>
+</div>
+</div>
+
+<!-- Brief Progress -->
+<div style="margin-bottom:16px">
+<div style="font-size:10px;color:var(--t3);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px">Onboarding Brief</div>
+${briefBar(briefVal, color)}
+</div>
+
+<!-- Responsibilities -->
+<div style="margin-bottom:16px">
+<div style="font-size:11px;font-weight:700;color:${color};margin-bottom:8px;text-transform:uppercase;letter-spacing:1px"><i class="fas fa-clipboard-list" style="margin-right:4px"></i> Responsibilities on ${c.name}</div>
+<div style="background:var(--bg);border-radius:8px;padding:12px">
+${respList(resp, color)}
+</div>
+</div>
+
+<!-- Tasks -->
+<div>
+<div style="font-size:11px;font-weight:700;color:var(--w);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px"><i class="fas fa-tasks" style="margin-right:4px;color:${color}"></i> Current Tasks</div>
+${taskList(tasks)}
+</div>
+</div>`;
+}
+
+document.getElementById('clientsList').style.display='none';
+document.getElementById('clientDetail').style.display='block';
+document.getElementById('clientDetail').innerHTML=`
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap">
+<button class="btn btn-o" onclick="closeClientDetail()"><i class="fas fa-arrow-left"></i> Back</button>
+<h2 style="font-size:22px;font-weight:800;color:var(--w)">${c.name}</h2>
+<span class="badge ${sc}">${c.status}</span>
+<span class="badge ${c.type==='From Scratch'?'blue':'purple'}">${c.type}</span>
+</div>
+
+<!-- Stats -->
+<div class="g4" style="margin-bottom:24px">
+<div class="card" style="text-align:center;padding:16px;margin-bottom:0">
+<div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Total Tasks</div>
+<div style="font-size:26px;font-weight:800;color:var(--w)">${ct.length}</div>
+</div>
+<div class="card" style="text-align:center;padding:16px;margin-bottom:0">
+<div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Done</div>
+<div style="font-size:26px;font-weight:800;color:var(--g)">${ct.filter(t=>t.status==='Done'||t.status==='Approved').length}</div>
+</div>
+<div class="card" style="text-align:center;padding:16px;margin-bottom:0">
+<div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Pending Approval</div>
+<div style="font-size:26px;font-weight:800;color:var(--yellow)">${ct.filter(t=>t.status==='Waiting Approval'||t.status==='Uploaded').length}</div>
+</div>
+<div class="card" style="text-align:center;padding:16px;margin-bottom:0">
+<div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Brief Progress</div>
+<div style="font-size:26px;font-weight:800;color:var(--g)">${avg}%</div>
+</div>
+</div>
+
+<!-- Account Type Info -->
+<div class="card" style="margin-bottom:24px;border-left:3px solid ${isNew?'var(--blue)':'var(--purple)'}">
+<div style="font-size:13px;font-weight:700;color:var(--w);margin-bottom:6px"><i class="fas ${isNew?'fa-plus-circle':'fa-sync-alt'}" style="color:${isNew?'var(--blue)':'var(--purple)'};margin-right:8px"></i>${isNew?'FROM SCRATCH — Building Everything New':'EXISTING BUSINESS — Audit, Optimize & Scale'}</div>
+<div style="font-size:12px;color:var(--t2);line-height:1.6">${isNew?'This client has no existing assets, accounts, or history. Every system, strategy, and creative needs to be built from zero. Responsibilities below reflect the full setup scope.':'This client has existing operations, ad history, and content. Responsibilities focus on auditing what exists, fixing gaps, optimizing performance, and scaling what works.'}</div>
+</div>
+
+<!-- Team Members -->
+<div class="g2" style="margin-bottom:24px">
+${memberCard('Seif','S','var(--g)','Strategy & Brand',seifResp,seifT,bp.seif)}
+${memberCard('Ziad','Z','var(--blue)','Creative & Content',ziadResp,ziadT,bp.ziad)}
+</div>
+<div class="g2">
+${memberCard('Jimmy','J','var(--yellow)','Performance & Data',jimmyResp,jimmyT,bp.jimmy)}
+${memberCard('Raneem','R','var(--purple)','Operations & E-commerce',raneemResp,raneemT,bp.raneem)}
+</div>
+`;
+}
+
+function closeClientDetail(){
+document.getElementById('clientsList').style.display='block';
+document.getElementById('clientDetail').style.display='none';
+}
+
+function deleteClient(id){if(confirm('Delete this client?')){DATA.clients=DATA.clients.filter(c=>c.id!==id);DATA.tasks=DATA.tasks.filter(t=>!DATA.clients.every(c=>c.name!==t.client));save();renderClients()}}
+
+// ===== TASKS =====
+function renderTasks(){
+let fc=document.getElementById('taskFilterClient').value;
+let fa=document.getElementById('taskFilterAssign').value;
+let fs=document.getElementById('taskFilterStatus').value;
+let tasks=DATA.tasks.filter(t=>{
+if(fc&&t.client!==fc)return false;
+if(fa&&t.assign!==fa)return false;
+if(fs&&t.status!==fs)return false;
+return true;
+});
+let cols=['To Do','In Progress','Uploaded','Waiting Approval','Approved','Done'];
+let colors={Todo:'blue','InProgress':'yellow',Uploaded:'purple',WaitingApproval:'orange',Approved:'green',Done:'green'};
+let board=document.getElementById('taskBoard');
+board.innerHTML=cols.map(col=>{
+let ct=tasks.filter(t=>t.status===col);
+let colKey=col.replace(/ /g,'');
+return`<div class="card" style="padding:16px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+<span class="badge ${colors[colKey]||'blue'}">${col} (${ct.length})</span>
+</div>
+${ct.map(t=>`<div class="task-item" onclick="editTask(${t.id})">
+<div class="task-check ${t.status==='Done'?'checked':''}" onclick="event.stopPropagation();toggleTask(${t.id})"><i class="fas fa-check"></i></div>
+<div class="task-info"><b>${t.title}</b><span>${t.client} · ${t.due} · <span class="dot ${t.priority==='Must Do'?'must':t.priority==='Should Do'?'should':'nice'}"></span>${t.priority}</span></div>
+<div class="task-assign">${t.assign}</div>
+</div>`).join('')}
+</div>`}).join('');
+}
+function toggleTask(id){
+let t=DATA.tasks.find(t=>t.id===id);
+if(!t)return;
+let flow=['To Do','In Progress','Uploaded','Waiting Approval','Approved','Done'];
+let i=flow.indexOf(t.status);
+if(i===-1)i=0;
+t.status=flow[(i+1)%flow.length];
+if(t.status==='Uploaded')DATA.activities.unshift({text:`${t.assign} uploaded work for "${t.title}"`,color:'b',time:'Just now'});
+if(t.status==='Waiting Approval')DATA.activities.unshift({text:`"${t.title}" waiting for Amr's approval`,color:'y',time:'Just now'});
+if(t.status==='Approved')DATA.activities.unshift({text:`Amr approved "${t.title}"`,color:'g',time:'Just now'});
+if(t.status==='Done')DATA.activities.unshift({text:`${t.assign} completed "${t.title}"`,color:'g',time:'Just now'});
+save();renderTasks();renderDashboard();
+}
+
+// ===== BRIEFS =====
+function renderBriefs(){
+let grid=document.getElementById('briefsGrid');
+grid.innerHTML=DATA.clients.map(c=>{
+let b=c.briefs;
+let members=[{n:'Seif',k:'seif',col:'var(--g)'},{n:'Ziad',k:'ziad',col:'var(--blue)'},{n:'Jimmy',k:'jimmy',col:'var(--yellow)'},{n:'Raneem',k:'raneem',col:'var(--purple)'}];
+return`<div class="card">
+<div class="card-head"><div class="card-title"><i class="fas fa-building"></i>${c.name}</div><span class="badge ${c.type==='From Scratch'?'blue':'purple'}">${c.type}</span></div>
+${members.map(m=>`<div class="brief-item">
+<div class="brief-top"><b style="color:${m.col}">${m.n}</b><span class="brief-pct">${b[m.k]}%</span></div>
+<div class="prog"><div class="fill" style="width:${b[m.k]}%;background:${m.col}"></div></div>
+<div style="display:flex;justify-content:flex-end;gap:6px;margin-top:8px">
+<button class="btn btn-o btn-sm" onclick="updateBrief(${c.id},'${m.k}',-10)">-10</button>
+<button class="btn btn-o btn-sm" onclick="updateBrief(${c.id},'${m.k}',10)">+10</button>
+<button class="btn btn-g btn-sm" onclick="updateBrief(${c.id},'${m.k}',100)">Done</button>
+</div>
+</div>`).join('')}
+</div>`}).join('');
+}
+function updateBrief(cid,key,val){
+let c=DATA.clients.find(c=>c.id===cid);
+if(!c)return;
+if(val===100)c.briefs[key]=100;
+else c.briefs[key]=Math.max(0,Math.min(100,c.briefs[key]+val));
+save();renderBriefs();renderDashboard();
+}
+
+// ===== REPORTS =====
+function renderReports(){
+let grid=document.getElementById('reportsGrid');
+grid.innerHTML=DATA.clients.map(c=>`<div class="card">
+<div class="card-head"><div class="card-title"><i class="fas fa-chart-bar"></i>${c.name}</div></div>
+<div class="brief-item" style="display:flex;justify-content:space-between;align-items:center">
+<div><b style="font-size:13px;color:var(--w)">Weekly Report</b><p style="font-size:11px;color:var(--t3)">Tasks, publishing, performance summary</p></div>
+<span class="badge yellow">Raneem</span>
+</div>
+<div class="brief-item" style="display:flex;justify-content:space-between;align-items:center">
+<div><b style="font-size:13px;color:var(--w)">Monthly Report</b><p style="font-size:11px;color:var(--t3)">Full performance review + next month strategy</p></div>
+<span class="badge green">Seif + Team</span>
+</div>
+<div style="margin-top:12px;display:flex;gap:8px">
+<button class="btn btn-o btn-sm"><i class="fas fa-download"></i>Weekly Template</button>
+<button class="btn btn-o btn-sm"><i class="fas fa-download"></i>Monthly Template</button>
+</div>
+</div>`).join('');
+}
+
+// ===== TEAM =====
+function renderTeam(){
+let members=[
+{n:'Seif',r:'Pod Leader — Strategy',col:'var(--g)',init:'S'},
+{n:'Ziad',r:'Creative & Content',col:'var(--blue)',init:'Z'},
+{n:'Jimmy',r:'Performance & Data',col:'var(--yellow)',init:'J'},
+{n:'Raneem',r:'Operations & E-commerce',col:'var(--purple)',init:'R'}
+];
+let grid=document.getElementById('teamGrid');
+grid.innerHTML=members.map(m=>{
+let tasks=DATA.tasks.filter(t=>t.assign===m.n);
+let done=tasks.filter(t=>t.status==='Done').length;
+let open=tasks.filter(t=>t.status!=='Done').length;
+let rate=tasks.length?Math.round(done/tasks.length*100):0;
+return`<div class="card team-card">
+<div class="team-av" style="background:${m.col}">${m.init}</div>
+<div class="team-nm">${m.n}</div>
+<div class="team-rl">${m.r}</div>
+<div class="team-row">
+<div class="team-s"><b>${open}</b><span>Open</span></div>
+<div class="team-s"><b>${done}</b><span>Done</span></div>
+<div class="team-s"><b>${rate}%</b><span>Rate</span></div>
+</div>
+</div>`}).join('');
+}
+
+// ===== MODALS =====
+function openModal(type,id){
+let m=document.getElementById('modalContent');
+let o=document.getElementById('modalOverlay');
+if(type==='client'){
+let c=id?DATA.clients.find(x=>x.id===id):{name:'',industry:'',type:'From Scratch',status:'Onboarding'};
+m.innerHTML=`<h3>${id?'Edit':'Add'} Client</h3>
+<label>Client Name</label><input id="mName" value="${c.name}">
+<label>Industry</label><input id="mInd" value="${c.industry}">
+<label>Type</label><select id="mType"><option ${c.type==='From Scratch'?'selected':''}>From Scratch</option><option ${c.type==='Existing'?'selected':''}>Existing</option></select>
+<label>Status</label><select id="mStat"><option ${c.status==='Active'?'selected':''}>Active</option><option ${c.status==='Onboarding'?'selected':''}>Onboarding</option><option ${c.status==='Paused'?'selected':''}>Paused</option></select>
+<div class="modal-btns"><button class="btn btn-o" onclick="closeModal()">Cancel</button><button class="btn btn-g" onclick="saveClient(${id||0})">Save</button></div>`;
+}
+if(type==='task'){
+let t=id?DATA.tasks.find(x=>x.id===id):{title:'',client:'',assign:'Seif',status:'To Do',priority:'Must Do',freq:'Once',due:''};
+let clientOpts=DATA.clients.map(c=>`<option ${c.name===t.client?'selected':''}>${c.name}</option>`).join('');
+m.innerHTML=`<h3>${id?'Edit':'Add'} Task</h3>
+<label>Task Title</label><input id="tTitle" value="${t.title}">
+<label>Client</label><select id="tClient">${clientOpts}</select>
+<label>Assigned To</label><select id="tAssign"><option ${t.assign==='Seif'?'selected':''}>Seif</option><option ${t.assign==='Ziad'?'selected':''}>Ziad</option><option ${t.assign==='Jimmy'?'selected':''}>Jimmy</option><option ${t.assign==='Raneem'?'selected':''}>Raneem</option></select>
+<label>Status</label><select id="tStatus"><option ${t.status==='To Do'?'selected':''}>To Do</option><option ${t.status==='In Progress'?'selected':''}>In Progress</option><option ${t.status==='Review'?'selected':''}>Review</option><option ${t.status==='Done'?'selected':''}>Done</option></select>
+<label>Priority</label><select id="tPri"><option ${t.priority==='Must Do'?'selected':''}>Must Do</option><option ${t.priority==='Should Do'?'selected':''}>Should Do</option><option ${t.priority==='Nice to Have'?'selected':''}>Nice to Have</option></select>
+<label>Frequency</label><select id="tFreq"><option ${t.freq==='Once'?'selected':''}>Once</option><option ${t.freq==='Daily'?'selected':''}>Daily</option><option ${t.freq==='Weekly'?'selected':''}>Weekly</option><option ${t.freq==='Monthly'?'selected':''}>Monthly</option></select>
+<label>Due Date</label><input type="date" id="tDue" value="${t.due}">
+<div class="modal-btns"><button class="btn btn-o" onclick="closeModal()">Cancel</button>${id?`<button class="btn btn-o" style="color:var(--red)" onclick="deleteTask(${id})"><i class="fas fa-trash"></i>Delete</button>`:''}<button class="btn btn-g" onclick="saveTask(${id||0})">Save</button></div>`;
+}
+o.classList.add('show');
+}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('show')}
+
+function saveClient(id){
+let obj={name:document.getElementById('mName').value,industry:document.getElementById('mInd').value,type:document.getElementById('mType').value,status:document.getElementById('mStat').value};
+if(!obj.name)return alert('Enter client name');
+if(id){let c=DATA.clients.find(x=>x.id===id);Object.assign(c,obj)}
+else{obj.id=DATA.nextId++;obj.briefs={seif:0,ziad:0,jimmy:0,raneem:0};DATA.clients.push(obj);DATA.activities.unshift({text:`New client "${obj.name}" added to Pod 2`,color:'g',time:'Just now'})}
+save();closeModal();renderClients();renderDashboard();
+}
+function editClient(id){openModal('client',id)}
+
+function saveTask(id){
+let obj={title:document.getElementById('tTitle').value,client:document.getElementById('tClient').value,assign:document.getElementById('tAssign').value,status:document.getElementById('tStatus').value,priority:document.getElementById('tPri').value,freq:document.getElementById('tFreq').value,due:document.getElementById('tDue').value};
+if(!obj.title)return alert('Enter task title');
+if(id){let t=DATA.tasks.find(x=>x.id===id);Object.assign(t,obj)}
+else{obj.id=DATA.nextId++;DATA.tasks.push(obj);DATA.activities.unshift({text:`Task "${obj.title}" assigned to ${obj.assign}`,color:'b',time:'Just now'})}
+save();closeModal();renderTasks();renderDashboard();
+}
+function editTask(id){openModal('task',id)}
+function deleteTask(id){DATA.tasks=DATA.tasks.filter(t=>t.id!==id);save();closeModal();renderTasks();renderDashboard()}
+
+// INIT
+renderDashboard();renderClients();
+
+
+
+
+
+
+// Auto-render when switching pages via radio buttons
+document.querySelectorAll('input[name="nav"]').forEach(function(r){
+r.addEventListener('change',function(){
+var p=this.id.replace('r-','');
+if(p==='dashboard')renderDashboard();
+if(p==='clients'){if(typeof closeClientDetail==='function')closeClientDetail();renderClients();}
+if(p==='tasks')renderTasks();
+if(p==='briefs')renderBriefs();
+if(p==='reports')renderReports();
+if(p==='team')renderTeam();
+window.scrollTo(0,0);
+});
+});
+
+</script>
+</body>
+</html>
